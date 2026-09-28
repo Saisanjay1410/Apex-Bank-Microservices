@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Apex Bank - Clone & Setup Guide for Any Laptop</title>
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1E293B;
+    background: #FFFFFF;
+    line-height: 1.5;
+    font-size: 12.5px;
+  }
+
+  .header {
+    border-bottom: 2px solid #4F46E5;
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: #EEF2FF;
+    color: #4F46E5;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid #C7D2FE;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #475569;
+    margin-bottom: 12px;
+  }
+
+  .meta-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+
+  .meta-item .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #64748B;
+    font-weight: 700;
+  }
+
+  .meta-item .value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0F172A;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E1B4B;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1.5px solid #E2E8F0;
+    padding-bottom: 4px;
+  }
+
+  h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+    margin-top: 12px;
+    margin-bottom: 6px;
+  }
+
+  p {
+    margin-bottom: 8px;
+    color: #334155;
+  }
+
+  ul, ol {
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  .code-block {
+    background: #0F172A;
+    color: #F8FAFC;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 11.5px;
+    line-height: 1.45;
+    margin: 8px 0 12px 0;
+    overflow-x: auto;
+  }
+
+  .code-block .comment {
+    color: #94A3B8;
+  }
+
+  .code-block .cmd {
+    color: #38BDF8;
+    font-weight: 600;
+  }
+
+  .code-block .arg {
+    color: #FDE047;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px 0;
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 7px 10px;
+    text-align: left;
+    border: 1px solid #E2E8F0;
+  }
+
+  th {
+    background: #F1F5F9;
+    font-weight: 700;
+    color: #1E293B;
+  }
+
+  tr:nth-child(even) {
+    background: #F8FAFC;
+  }
+
+  .tip-box {
+    background: #F0FDF4;
+    border-left: 4px solid #16A34A;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #166534;
+  }
+
+  .warn-box {
+    background: #FFFBEB;
+    border-left: 4px solid #D97706;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #92400E;
+  }
+
+  .step-card {
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+
+  .step-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .step-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #0F172A;
+  }
+
+  .port-badge {
+    font-family: monospace;
+    font-size: 11px;
+    background: #E0E7FF;
+    color: #3730A3;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">Multi-Machine Deployment Guide</div>
+  <h1>Apex Bank Microservices â€” Clone & Setup Guide</h1>
+  <div class="subtitle">Complete instructions for running the distributed banking platform on a new laptop</div>
+  <div class="meta-box">
+    <div class="meta-item">
+      <div class="label">GitHub Repository</div>
+      <div class="value">Saisanjay1410/Apex-Bank-Microservices</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Target Platform</div>
+      <div class="value">Windows 10/11 / macOS / Linux</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Default Gateway Port</div>
+      <div class="value">Port 8090 (Frontend: 5173)</div>
+    </div>
+  </div>
+</div>
+
+<h2>1. Prerequisites to Install on the New Laptop</h2>
+<p>Ensure the following software packages are installed on the target computer prior to running:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Required Version</th>
+      <th>Verification Command</th>
+      <th>Installation Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Git</strong></td>
+      <td>v2.30 or newer</td>
+      <td><code>git --version</code></td>
+      <td>git-scm.com/downloads</td>
+    </tr>
+    <tr>
+      <td><strong>Java JDK</strong></td>
+      <td>JDK 17 or JDK 21</td>
+      <td><code>java -version</code></td>
+      <td>adoptium.net (Eclipse Temurin)</td>
+    </tr>
+    <tr>
+      <td><strong>Node.js & npm</strong></td>
+      <td>Node v18+ / v20+</td>
+      <td><code>node -v</code> & <code>npm -v</code></td>
+      <td>nodejs.org</td>
+    </tr>
+    <tr>
+      <td><strong>MySQL Server</strong></td>
+      <td>MySQL 8.0+</td>
+      <td><code>mysql --version</code></td>
+      <td>dev.mysql.com/downloads/installer</td>
+    </tr>
+    <tr>
+      <td><strong>Apache Maven</strong></td>
+      <td>v3.8+ (Optional)</td>
+      <td><code>mvn -v</code></td>
+      <td>Included Maven Wrapper (<code>./mvnw</code>) is provided</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>2. Clone the Repository</h2>
+<p>Open a terminal (PowerShell, Command Prompt, or Terminal) in your desired working folder and clone:</p>
+<div class="code-block">
+<span class="comment"># Clone the repository from GitHub</span><br>
+<span class="cmd">git clone</span> <span class="arg">https://github.com/Saisanjay1410/Apex-Bank-Microservices.git</span><br><br>
+<span class="comment"># Enter the project directory</span><br>
+<span class="cmd">cd</span> <span class="arg">Apex-Bank-Microservices</span>
+</div>
+
+<h2>3. MySQL Database Configuration</h2>
+<p>1. Start the MySQL service and open the MySQL Command Line Client or Workbench.</p>
+<p>2. Execute the following SQL query to create the database:</p>
+<div class="code-block">
+<span class="cmd">CREATE DATABASE</span> IF NOT EXISTS <span class="arg">banking_payroll</span>;
+</div>
+
+<div class="tip-box">
+  <strong>No Manual Schema Required:</strong> Hibernate DDL auto-creates all tables (<code>users</code>, <code>roles</code>, <code>bank_account</code>, <code>transaction</code>, <code>employee</code>) and seeds default users on first start.
+</div>
+
+<div class="warn-box">
+  <strong>Database Password Notice:</strong> The microservices default to password <code>Sanjay@2004</code>. If your local MySQL root password differs, update <code>spring.datasource.password</code> in:
+  <ul style="margin: 6px 0 0 16px;">
+    <li><code>Banking-Service/src/main/resources/application.properties</code></li>
+    <li><code>Payroll-Service/src/main/resources/application.properties</code></li>
+  </ul>
+  <em>Alternatively, pass your password at launch time as shown in Step 4.</em>
+</div>
+
+<div class="page-break"></div>
+
+<h2>4. Step-by-Step Execution Sequence (6 Terminals)</h2>
+<p>Open separate terminal windows within the <code>Apex-Bank-Microservices</code> root directory and run the services in the following order:</p>
+
+<div class="step-card">
+  <div class="step-header">
+    <div class="step-title">Terminal 1: Eureka Discovery Registry</div>
+    <div class="port-badge">PORT 8761</div>
+  </div>
+  <p>The central registry must be started first so that downstream services can register themselves.</p>
+  <div class="code-block">
+<span class="cmd">cd</span> <span class="arg">Eureka-Server</span><br>
+<span class="cmd">mvn</span> <span class="arg">spring-boot:run</span> &nbsp;&nbsp;<span class="comment"># Or .\mvnw.cmd spring-boot:run</span>
+  </div>
+  <p style="font-size: 11.5px; color: #4F46E5;"><strong>Verification:</strong> Wait ~15s, then visit <a href="http://localhost:8761">http://localhost:8761</a> in your browser.</p>
+</div>
+
+<div class="step-card">
+  <div class="step-header">
+    <div class="step-title">Terminal 2: AI Assistant Microservice</div>
+    <div class="port-badge">PORT 8083</div>
+  </div>
+  <p>Provides conversational intelligence and answers user queries regarding accounts and payroll.</p>
+  <div class="code-block">
+<span class="cmd">cd</span> <span class="arg">AI-Chatbot_Geethika</span><br>
+<span class="cmd">mvn</span> <span class="arg">spring-boot:run</span>
+  </div>
+</div>
+
+<div class="step-card">
+  <div class="step-header">
+    <div class="step-title">Terminal 3: Core Banking Microservice</div>
+    <div class="port-badge">PORT 8081</div>
+  </div>
+  <p>Manages user authentication, accounts, transaction ledgers, and atomic fund transfers.</p>
+  <div class="code-block">
+<span class="cmd">cd</span> <span class="arg">Banking-Service</span><br>
+<span class="cmd">mvn</span> <span class="arg">spring-boot:run</span><br>
+<span class="comment"># If overriding password: mvn spring-boot:run -Dspring-boot.run.arguments="--spring.datasource.password=YOUR_PASS"</span>
+  </div>
+</div>
+
+<div class="step-card">
+  <div class="step-header">
+    <div class="step-title">Terminal 4: Payroll & Employee Microservice</div>
+    <div class="port-badge">PORT 8082</div>
+  </div>
+  <p>Handles employee registry, department management, and automated salary disbursements.</p>
+  <div class="code-block">
+<span class="cmd">cd</span> <span class="arg">Payroll-Service</span><br>
+<span class="cmd">mvn</span> <span class="arg">spring-boot:run</span>
+  </div>
+</div>
+
+<div class="step-card">
+  <div class="step-header">
+    <div class="step-title">Terminal 5: Spring Cloud API Gateway</div>
+    <div class="port-badge">PORT 8090</div>
+  </div>
+  <p>Routes all inbound client requests, manages CORS, and forwards to registered Eureka instances.</p>
+  <div class="code-block">
+<span class="cmd">cd</span> <span class="arg">API-Gateway</span><br>
+<span class="cmd">mvn</span> <span class="arg">spring-boot:run</span>
+  </div>
+  <p style="font-size: 11px; color: #64748B;"><em>Configured to port 8090 to avoid default conflicts with Oracle XETNS or IIS on 8080.</em></p>
+</div>
+
+<div class="step-card">
+  <div class="step-header">
+    <div class="step-title">Terminal 6: React Frontend Portal</div>
+    <div class="port-badge">PORT 5173</div>
+  </div>
+  <p>Modern React 18 single-page application built with TypeScript, Tailwind CSS, and Vite.</p>
+  <div class="code-block">
+<span class="cmd">cd</span> <span class="arg">frontend</span><br>
+<span class="cmd">npm install</span><br>
+<span class="cmd">npm run dev</span>
+  </div>
+  <p style="font-size: 11.5px; color: #16A34A;"><strong>Access Portal:</strong> Open your browser to <a href="http://localhost:5173">http://localhost:5173</a></p>
+</div>
+
+<h2>5. Seed User Login Credentials</h2>
+<p>Log in at <a href="http://localhost:5173/login">http://localhost:5173/login</a> with any of the pre-configured accounts:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Accessible Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Administrator</strong></td>
+      <td><code>admin</code></td>
+      <td><code>admin123</code></td>
+      <td>Analytics Dashboard, All Bank Accounts, Complete Audit Ledger, User Roles</td>
+    </tr>
+    <tr>
+      <td><strong>HR Manager</strong></td>
+      <td><code>hr_user</code></td>
+      <td><code>hr123</code></td>
+      <td>Payroll Processing, Employee Directory, Salary Runs, AI Assistant</td>
+    </tr>
+    <tr>
+      <td><strong>Employee</strong></td>
+      <td><code>emp_user</code></td>
+      <td><code>emp123</code></td>
+      <td>Personal Banking Portal, Funds Transfer, Salary Slips, AI Assistant</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. Common Troubleshooting FAQs</h2>
+<ul>
+  <li><strong>Port 8080 Already in Use:</strong> Apex Bank API Gateway runs on port <code>8090</code>, intentionally bypassing any existing Apache Tomcat or Oracle services.</li>
+  <li><strong>MySQL Connection Refused:</strong> Verify the MySQL 8.0 service is running via Windows Services (<code>Start-Service MySQL80</code>) or <code>sudo systemctl start mysql</code> on Linux.</li>
+  <li><strong>Instance Not Visible in Eureka:</strong> Allow 10-20 seconds after starting a service for the heartbeat signal to register with Eureka at <code>http://localhost:8761</code>.</li>
+</ul>
+
+</body>
+</html>
