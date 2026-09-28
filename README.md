@@ -4,6 +4,15 @@ An enterprise-grade, distributed banking and payroll platform built with **Sprin
 
 ---
 
+## ðŸ“‘ Official PDF Guides & Documentation
+
+Direct download links for the generated project PDF documents:
+
+- ðŸš€ **[Apex_Bank_Setup_And_Run_Guide.pdf](./Apex_Bank_Setup_And_Run_Guide.pdf)** â€” *Step-by-step guide to clone, configure MySQL, and run all 5 microservices & frontend on any laptop.*
+- ðŸ“˜ **[Apex_Bank_Microservices_Documentation.pdf](./Apex_Bank_Microservices_Documentation.pdf)** â€” *Full architectural documentation, complete REST API specs with JSON payloads, and Role-Based Access Control (RBAC) matrix.*
+
+---
+
 ## ðŸŒŸ Key Architecture & Services
 
 ```
@@ -116,8 +125,7 @@ npm run dev
 
 ---
 
-## ðŸ“– Complete Documentation
-
-Comprehensive architecture specifications, REST API contracts, and RBAC matrix are documented in:
-- `Apex_Bank_Microservices_Documentation.pdf`
-- `SYSTEM_DOCUMENTATION.md`
+## ðŸ“– Complete Documentation Files
+- [`Apex_Bank_Setup_And_Run_Guide.pdf`](./Apex_Bank_Setup_And_Run_Guide.pdf)
+- [`Apex_Bank_Microservices_Documentation.pdf`](./Apex_Bank_Microservices_Documentation.pdf)
+- [`SYSTEM_DOCUMENTATION.md`](./SYSTEM_DOCUMENTATION.md)
