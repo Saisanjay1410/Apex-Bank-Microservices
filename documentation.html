@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Apex Bank - Microservices Enterprise Portal Documentation</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1E293B;
+    background: #FFFFFF;
+    line-height: 1.55;
+    font-size: 13px;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  /* Cover / Header Header */
+  .cover {
+    border-bottom: 2px solid #4F46E5;
+    padding-bottom: 24px;
+    margin-bottom: 28px;
+  }
+
+  .badge-top {
+    display: inline-block;
+    background: #EEF2FF;
+    color: #4F46E5;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid #C7D2FE;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 16px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+    background: #F8FAFC;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+  }
+
+  .meta-item .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #64748B;
+    letter-spacing: 0.04em;
+  }
+
+  .meta-item .val {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0F172A;
+    margin-top: 2px;
+  }
+
+  /* Section Headings */
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1E293B;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-bottom: 10px;
+    color: #334155;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px 0;
+    font-size: 11.5px;
+  }
+
+  th {
+    background: #F1F5F9;
+    color: #475569;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    padding: 8px 10px;
+    border: 1px solid #CBD5E1;
+    text-align: left;
+  }
+
+  td {
+    padding: 8px 10px;
+    border: 1px solid #E2E8F0;
+    color: #1E293B;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(even) td {
+    background: #F8FAFC;
+  }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .badge-admin { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
+  .badge-hr { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
+  .badge-emp { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+  .badge-indigo { background: #EEF2FF; color: #4338CA; border: 1px solid #C7D2FE; }
+
+  /* Code / Pre */
+  pre {
+    background: #0F172A;
+    color: #F8FAFC;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'SF Mono', Monaco, monospace;
+    font-size: 11px;
+    line-height: 1.45;
+    margin: 8px 0 14px 0;
+    overflow-x: auto;
+  }
+
+  code {
+    font-family: 'Consolas', monospace;
+    font-size: 11.5px;
+    background: #F1F5F9;
+    color: #4F46E5;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  pre code {
+    background: transparent;
+    color: #F8FAFC;
+    padding: 0;
+  }
+
+  /* Callout Boxes */
+  .callout {
+    background: #F8FAFC;
+    border-left: 4px solid #4F46E5;
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 12px 0;
+    font-size: 12px;
+  }
+
+  .callout-success {
+    background: #F0FDF4;
+    border-left-color: #10B981;
+  }
+
+  .callout-warning {
+    background: #FFFBEB;
+    border-left-color: #F59E0B;
+  }
+
+  /* Step box */
+  .step-box {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+
+  .step-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #0F172A;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .step-num {
+    background: #4F46E5;
+    color: #FFFFFF;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Cover / Header -->
+  <div class="cover">
+    <div class="badge-top">Enterprise Architecture & Operational Guide</div>
+    <h1>Apex Bank — Microservices Portal</h1>
+    <div class="subtitle">Complete Technical Reference, API Specifications, Role-Based Access Control & Startup Guide</div>
+    
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="label">Architecture</div>
+        <div class="val">Spring Cloud Microservices</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Frontend</div>
+        <div class="val">React 19 + TypeScript + Vite</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Database</div>
+        <div class="val">MySQL 8.0 (InnoDB)</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Discovery</div>
+        <div class="val">Netflix Eureka (:8761)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 1: System Overview -->
+  <h2>1. System Architecture & Topology</h2>
+  <p>
+    The system is built as a distributed, service-oriented architecture consisting of five backend Spring Boot services, an Apache Kafka messaging broker, a central MySQL database, and a high-performance single-page application (SPA) built with React and Vite.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Microservice</th>
+        <th>Port</th>
+        <th>Application ID</th>
+        <th>Role & Key Responsibilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Eureka Server</strong></td>
+        <td><code>:8761</code></td>
+        <td><code>eureka-server</code></td>
+        <td>Central service registry and heartbeat coordinator for dynamic discovery.</td>
+      </tr>
+      <tr>
+        <td><strong>API Gateway</strong></td>
+        <td><code>:8090</code></td>
+        <td><code>api-gateway</code></td>
+        <td>Spring Cloud Gateway (Reactive WebFlux) routing requests to services via Eureka.</td>
+      </tr>
+      <tr>
+        <td><strong>Banking Service</strong></td>
+        <td><code>:8081</code></td>
+        <td><code>banking-service</code></td>
+        <td>Core banking: JWT auth, bank accounts, audit ledger, and transactions.</td>
+      </tr>
+      <tr>
+        <td><strong>Payroll Service</strong></td>
+        <td><code>:8082</code></td>
+        <td><code>payroll-service</code></td>
+        <td>Enterprise payroll management with Kafka asynchronous event streaming.</td>
+      </tr>
+      <tr>
+        <td><strong>AI Chatbot Service</strong></td>
+        <td><code>:8083</code></td>
+        <td><code>ai-chatbot</code></td>
+        <td>AI financial assistance resolving natural-language operations queries.</td>
+      </tr>
+      <tr>
+        <td><strong>Vite Frontend</strong></td>
+        <td><code>:5173</code></td>
+        <td><code>frontend</code></td>
+        <td>Modular client SPA with dual Light/Dark themes and Live/Mock fallback modes.</td>
+      </tr>
+      <tr>
+        <td><strong>MySQL Database</strong></td>
+        <td><code>:3306</code></td>
+        <td><code>banking_payroll</code></td>
+        <td>ACID relational storage for users, roles, accounts, transactions, and staff.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Section 2: Seed Credentials -->
+  <h2>2. Seed User Accounts & Credentials (MySQL)</h2>
+  <p>
+    These default credentials are pre-seeded in the database (<code>banking_payroll.users</code>) and encrypted with <strong>BCrypt</strong>.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Username</th>
+        <th>Corporate Email</th>
+        <th>Password</th>
+        <th>System Permissions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-admin">ROLE_ADMIN</span></td>
+        <td><strong>admin</strong></td>
+        <td><code>admin@bank.com</code></td>
+        <td><strong><code>Admin@123</code></strong></td>
+        <td><strong>Full System Administrator</strong>: Create HR accounts, manage staff directory, open/close bank accounts, post transactions, export CSV, and view cluster topology.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-hr">ROLE_HR</span></td>
+        <td><strong>hr</strong></td>
+        <td><code>hr@bank.com</code></td>
+        <td><strong><code>Hr@123456</code></strong></td>
+        <td><strong>Human Resources Manager</strong>: Manage staff directory (add/edit employees, salaries, designations), AI assistant, and cluster health. Restricted from banking accounts and ledger.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-emp">ROLE_EMPLOYEE</span></td>
+        <td><strong>john_fintech</strong></td>
+        <td><code>john_fintech@gmail.com</code></td>
+        <td><strong><code>Password1234</code></strong></td>
+        <td><strong>Standard Banking Client</strong>: View assigned bank accounts, execute deposits/withdrawals/transfers, view audit ledger, export CSV, and AI assistant. Restricted from staff directory.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-emp">ROLE_EMPLOYEE</span></td>
+        <td><strong>testuser</strong></td>
+        <td><code>testuser@gmail.com</code></td>
+        <td><strong><code>Test@123</code></strong></td>
+        <td>Standard employee secondary account.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-success">
+    <strong>One-Click Demo Fill:</strong> On the Login page (<code>/login</code>), click the <strong>Admin</strong>, <strong>HR Mgr</strong>, or <strong>Staff</strong> shortcut buttons to automatically populate these credentials.
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- Section 3: Technologies Used -->
+  <h2>3. Technologies Used Across the Stack</h2>
+
+  <h3>A. Frontend Application (Directory: <code>c:\Users\saisa\Desktop\Poc Implemented\frontend</code>)</h3>
+  <ul>
+    <li><strong>React 19 & TypeScript</strong>: Component modularity, strict typing, and high rendering efficiency.</li>
+    <li><strong>Vite 8.3 Bundler</strong>: Native ESM-powered development server with instant HMR and production rollups.</li>
+    <li><strong>TanStack React Query v5</strong>: Server-state synchronization, automatic caching, garbage collection, and optimistic mutation rollbacks.</li>
+    <li><strong>Zustand</strong>: Lightweight global client state for auth tokens, demo role switching, theme preference, and mock fallback toggling.</li>
+    <li><strong>React Router v7</strong>: Declarative client routing with protected routes and role-based redirect guards.</li>
+    <li><strong>Axios</strong>: Robust HTTP client with automatic JWT Bearer token request interceptor and error status handling.</li>
+    <li><strong>Pure Vanilla CSS Design System</strong>: Complete dual-theme architecture (Modern Fintech Light + Obsidian Dark) inspired by Stripe and Mercury Bank, with 0% heavy CSS framework overhead.</li>
+    <li><strong>Lucide React</strong>: Clean, crisp vector iconography.</li>
+  </ul>
+
+  <h3>B. Backend Microservices</h3>
+  <ul>
+    <li><strong>Java 21 / 24</strong> & <strong>Spring Boot 4.1.0</strong>: High-throughput reactive and servlet runtimes.</li>
+    <li><strong>Spring Cloud 2025.1.2</strong>: Microservices coordination, client-side load balancing, and dynamic routing.</li>
+    <li><strong>Netflix Eureka Server & Client</strong>: Dynamic service registration, heartbeat validation, and instance cataloging.</li>
+    <li><strong>Spring Cloud Gateway (WebFlux)</strong>: Asynchronous reverse proxy and request forwarding to Eureka instances.</li>
+    <li><strong>Spring Security 6 & JJWT</strong>: Stateless authentication with HMAC-SHA256 encrypted JWT Bearer tokens (1-hour validity).</li>
+    <li><strong>Spring Data JPA & Hibernate</strong>: Relational object-relational mapping, transactional integrity, and automated schema validation.</li>
+    <li><strong>MySQL 8.0 Community Server</strong>: Transactional relational database engine running under Windows Service <code>MYSQL80</code>.</li>
+    <li><strong>Apache Kafka</strong>: Distributed event streaming bus for asynchronous inter-service workflows.</li>
+    <li><strong>SpringDoc OpenAPI / Swagger UI</strong>: Interactive API schema exploration and documentation.</li>
+  </ul>
+
+  <!-- Section 4: RBAC Matrix -->
+  <h2>4. Role-Based Access Control (RBAC) Matrix</h2>
+  <p>The table below summarizes page and endpoint access rules enforced across both the React frontend and Spring Security filters:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature / View</th>
+        <th>URL Route</th>
+        <th>ADMIN</th>
+        <th>HR MGR</th>
+        <th>EMPLOYEE</th>
+        <th>Guest / Public</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Login & Register</strong></td>
+        <td><code>/login</code></td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+      </tr>
+      <tr>
+        <td><strong>Executive Overview</strong></td>
+        <td><code>/dashboard</code></td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Bank Accounts & 3D Cards</strong></td>
+        <td><code>/accounts</code></td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Open New Account</strong></td>
+        <td>Modal on <code>/accounts</code></td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Close Account (Zero Txs)</strong></td>
+        <td>Delete button on <code>/accounts</code></td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+        <td>❌ Restricted</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Transaction Ledger</strong></td>
+        <td><code>/transactions</code></td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Post Deposit / Withdrawal</strong></td>
+        <td>Modal on <code>/transactions</code></td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Export Ledger to CSV</strong></td>
+        <td>Button on <code>/transactions</code></td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Staff Directory</strong></td>
+        <td><code>/employees</code></td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Dashboard</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Add / Edit Staff Member</strong></td>
+        <td>Modal on <code>/employees</code></td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Create HR Account</strong></td>
+        <td>Modal on <code>/employees</code></td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+        <td>❌ Restricted</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>AI Financial Assistant</strong></td>
+        <td><code>/assistant</code></td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+      <tr>
+        <td><strong>Floating AI Assistant Drawer</strong></td>
+        <td>Bottom-Right Popup</td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>❌ Restricted</td>
+      </tr>
+      <tr>
+        <td><strong>Cluster Topology & Health</strong></td>
+        <td><code>/health</code></td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>✅ Allowed</td>
+        <td>❌ Redirect to Login</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- Section 5: REST API Specs -->
+  <h2>5. Complete REST API Specifications</h2>
+
+  <h3>A. Authentication Endpoints (Banking Service — Port 8081)</h3>
+  
+  <p><strong>1. Authenticate with Email & Password (Login)</strong></p>
+  <pre><code>POST http://localhost:8081/auth/login
+Content-Type: application/json
+
+Request:
+{
+  "email": "admin@bank.com",
+  "password": "Admin@123"
+}
+
+Response (200 OK):
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJST0xFX0FETUlOIi... [JWT TOKEN]"
+}</code></pre>
+
+  <p><strong>2. Register New User (Public)</strong></p>
+  <pre><code>POST http://localhost:8081/auth/register
+Content-Type: application/json
+
+Request:
+{
+  "username": "alex_fintech",
+  "email": "alex@bank.com",
+  "password": "Password123!"
+}
+
+Response (200 OK):
+"User registered successfully"</code></pre>
+
+  <p><strong>3. Create HR Account (Admin Only)</strong></p>
+  <pre><code>POST http://localhost:8081/auth/create-hr
+Authorization: Bearer &lt;ADMIN_JWT&gt;
+Content-Type: application/json
+
+Request:
+{
+  "username": "hr_lead",
+  "email": "hr_lead@bank.com",
+  "password": "SecurePassword123"
+}
+
+Response (200 OK):
+"HR user created successfully"</code></pre>
+
+  <h3>B. Bank Account Endpoints (Banking Service — Port 8081)</h3>
+  <p><em>Requires <code>Authorization: Bearer &lt;TOKEN&gt;</code> (Roles: ADMIN, EMPLOYEE)</em></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>URL</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>GET</code></td>
+        <td><code>http://localhost:8081/accounts</code></td>
+        <td>List all active bank accounts from MySQL.</td>
+      </tr>
+      <tr>
+        <td><code>GET</code></td>
+        <td><code>http://localhost:8081/accounts/{id}</code></td>
+        <td>Fetch a single account by primary key ID.</td>
+      </tr>
+      <tr>
+        <td><code>POST</code></td>
+        <td><code>http://localhost:8081/accounts</code></td>
+        <td>Open a new bank account.</td>
+      </tr>
+      <tr>
+        <td><code>PUT</code></td>
+        <td><code>http://localhost:8081/accounts/{id}</code></td>
+        <td>Update account details or associated employee ID.</td>
+      </tr>
+      <tr>
+        <td><code>DELETE</code></td>
+        <td><code>http://localhost:8081/accounts/{id}</code></td>
+        <td>Close an account (only allowed if it has 0 transactions).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Sample Account Creation Request (<code>POST /accounts</code>):</strong></p>
+  <pre><code>POST http://localhost:8081/accounts
+Authorization: Bearer &lt;TOKEN&gt;
+Content-Type: application/json
+
+{
+  "accountNumber": "ACC10003",
+  "accountType": "SAVINGS",
+  "balance": 15000.00,
+  "employeeId": 1
+}</code></pre>
+
+  <h3>C. Transaction Endpoints (Banking Service — Port 8081)</h3>
+  <p><em>Requires <code>Authorization: Bearer &lt;TOKEN&gt;</code> (Roles: ADMIN, EMPLOYEE)</em></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>URL</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>GET</code></td>
+        <td><code>http://localhost:8081/transactions</code></td>
+        <td>Retrieve the full financial audit ledger from MySQL.</td>
+      </tr>
+      <tr>
+        <td><code>GET</code></td>
+        <td><code>http://localhost:8081/transactions/{id}</code></td>
+        <td>Fetch single transaction details.</td>
+      </tr>
+      <tr>
+        <td><code>POST</code></td>
+        <td><code>http://localhost:8081/transactions</code></td>
+        <td>Execute deposit/withdrawal; automatically increments/decrements account balance.</td>
+      </tr>
+      <tr>
+        <td><code>DELETE</code></td>
+        <td><code>http://localhost:8081/transactions/{id}</code></td>
+        <td>Delete an audit entry from ledger.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Sample Transaction Request (<code>POST /transactions</code>):</strong></p>
+  <pre><code>POST http://localhost:8081/transactions
+Authorization: Bearer &lt;TOKEN&gt;
+Content-Type: application/json
+
+{
+  "accountId": 2,
+  "amount": 1250.00,
+  "transactionType": "DEPOSIT",
+  "remarks": "Executive Q3 Bonus Allocation"
+}</code></pre>
+
+  <h3>D. Staff & Employee Endpoints (Banking Service — Port 8081)</h3>
+  <p><em>Requires <code>Authorization: Bearer &lt;TOKEN&gt;</code> (Roles: ADMIN, HR)</em></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>URL</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>GET</code></td>
+        <td><code>http://localhost:8081/employees</code></td>
+        <td>List all staff members and payroll records.</td>
+      </tr>
+      <tr>
+        <td><code>GET</code></td>
+        <td><code>http://localhost:8081/employees/{id}</code></td>
+        <td>Fetch employee profile by ID.</td>
+      </tr>
+      <tr>
+        <td><code>POST</code></td>
+        <td><code>http://localhost:8081/employees</code></td>
+        <td>Add a new staff record.</td>
+      </tr>
+      <tr>
+        <td><code>PUT</code></td>
+        <td><code>http://localhost:8081/employees/{id}</code></td>
+        <td>Update employee designation, department, or salary.</td>
+      </tr>
+      <tr>
+        <td><code>DELETE</code></td>
+        <td><code>http://localhost:8081/employees/{id}</code></td>
+        <td>Remove employee record.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>E. AI Chatbot API (AI-Chatbot Service — Port 8083)</h3>
+  <pre><code>POST http://localhost:8083/api/chat
+Content-Type: application/json
+
+Request:
+{
+  "message": "What is my account balance and how do I deposit funds?",
+  "userId": "admin"
+}
+
+Response (200 OK):
+{
+  "response": "AI Response: What is my account balance and how do I deposit funds?",
+  "status": "SUCCESS"
+}</code></pre>
+
+  <h3>F. Eureka Discovery Registry (Eureka Server — Port 8761)</h3>
+  <ul>
+    <li><strong>Web Dashboard</strong>: <code>http://localhost:8761/</code> (Visual summary of all registered instances).</li>
+    <li><strong>REST API</strong>: <code>GET http://localhost:8761/eureka/apps</code> with header <code>Accept: application/json</code>.</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- Section 6: How to Run -->
+  <h2>6. Step-by-Step Guide: How to Run Frontend & Backend</h2>
+
+  <div class="callout callout-warning">
+    <strong>Prerequisites:</strong>
+    Ensure you have <strong>Java 21 or 24</strong> (<code>java -version</code>), <strong>Maven 3.9+</strong> (<code>mvn -v</code>), <strong>Node.js 18+</strong> (<code>node -v</code>), and <strong>MySQL 8.0</strong> installed.
+  </div>
+
+  <div class="step-box">
+    <div class="step-title"><span class="step-num">1</span> Verify MySQL Database Service</div>
+    <p>Ensure that MySQL is running on port <code>3306</code> with database <code>banking_payroll</code>:</p>
+    <pre><code># Check MySQL Windows service
+Get-Service *mysql*
+
+# Verify tables exist
+mysql -u root -p"Sanjay@2004" -e "USE banking_payroll; SHOW TABLES;"</code></pre>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title"><span class="step-num">2</span> Start Eureka Discovery Server (Port 8761)</div>
+    <p>Always start Eureka Server first so microservices can register immediately on boot:</p>
+    <pre><code>cd "c:\Users\saisa\Desktop\Poc Implemented\Eureka-Server"
+mvn spring-boot:run</code></pre>
+    <p><em>Verify in browser: Open <code>http://localhost:8761</code> to see the Eureka Dashboard.</em></p>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title"><span class="step-num">3</span> Start Banking Service (Port 8081)</div>
+    <p>Runs the core banking ledger, JWT auth, and MySQL data access:</p>
+    <pre><code>cd "c:\Users\saisa\Desktop\Poc Implemented\Banking-Service"
+mvn spring-boot:run</code></pre>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title"><span class="step-num">4</span> Start Payroll Service (Port 8082)</div>
+    <p>Runs employee payroll management and registers with Eureka:</p>
+    <pre><code>cd "c:\Users\saisa\Desktop\Poc Implemented\Payroll-Service"
+mvn spring-boot:run</code></pre>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title"><span class="step-num">5</span> Start AI Chatbot Service (Port 8083)</div>
+    <p>Runs the AI conversational assistant service:</p>
+    <pre><code>cd "c:\Users\saisa\Desktop\Poc Implemented\AI-Chatbot_Geethika"
+mvn spring-boot:run</code></pre>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title"><span class="step-num">6</span> Start Spring Cloud API Gateway (Port 8090)</div>
+    <p>Provides unified reactive proxying and dynamic routing to Eureka instances:</p>
+    <pre><code>cd "c:\Users\saisa\Desktop\Poc Implemented\API-Gateway"
+mvn spring-boot:run</code></pre>
+    <p><em>(Note: Configured to port 8090 to avoid collision with Oracle TNS Listener on port 8080).</em></p>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title"><span class="step-num">7</span> Start Vite React Frontend (Port 5173)</div>
+    <p>Launch the React single-page portal:</p>
+    <pre><code>cd "c:\Users\saisa\Desktop\Poc Implemented\frontend"
+npm install    # (First time only)
+npm run dev</code></pre>
+    <p>Open <strong><code>http://localhost:5173</code></strong> in any web browser!</p>
+  </div>
+
+  <!-- Section 7: Testing in Browser -->
+  <h2>7. Testing & Verification Checklist</h2>
+  <ol style="padding-left: 20px; line-height: 1.8;">
+    <li><strong>Open Portal</strong>: Navigate to <code>http://localhost:5173/login</code>.</li>
+    <li><strong>Ensure Live Mode</strong>: Verify the top badge displays <code>Live Backend (:8081)</code>. (If it displays Mock Mode, click it once to switch).</li>
+    <li><strong>Sign In as Admin</strong>: Click <strong>Admin</strong> shortcut button (or enter <code>admin@bank.com</code> / <code>Admin@123</code>).</li>
+    <li><strong>Verify Real MySQL Data</strong>:
+      <ul>
+        <li>Go to <strong>Bank Accounts</strong> (<code>/accounts</code>): verify <code>ACC10001</code> and <code>ACC10002</code> are loaded from MySQL.</li>
+        <li>Go to <strong>Transaction Ledger</strong> (<code>/transactions</code>): verify transaction #3 ("Executive Q3 Bonus Allocation") is displayed.</li>
+        <li>Click <strong>Post Transaction</strong>: submit a deposit of $500.00 and watch the balance automatically increment.</li>
+      </ul>
+    </li>
+    <li><strong>Test AI Assistant</strong>: Go to <code>/assistant</code> and send any query to receive live responses from Port 8083.</li>
+    <li><strong>Inspect Cluster Topology</strong>: Go to <code>/health</code> to inspect live ping status across Eureka, Gateway, Banking, Payroll, and AI nodes.</li>
+    <li><strong>Toggle Themes</strong>: Click the <strong>Sun/Moon icon</strong> in the top navbar to switch between Crisp Light and Obsidian Dark modes.</li>
+  </ol>
+
+</body>
+</html>
